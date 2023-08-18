@@ -3,7 +3,7 @@ package com.test.todo.filters;
 import java.io.IOException;
 import java.sql.Connection;
 
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -34,7 +34,7 @@ public class IdentificationFilter extends HttpFilter implements Filter {
 			Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
 			String userName = req.getParameter("userName");
 			String password = req.getParameter("password");
-			boolean isExist = ApplicationDoa.isExist(userName, password, connection);
+			boolean isExist = ApplicationDao.isExist(userName, password, connection);
 
 			// trying to sinUp with existing credential
 			if (req.getRequestURI().startsWith("/TodoApp/RegisterUser") && isExist) {

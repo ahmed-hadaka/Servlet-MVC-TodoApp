@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import com.test.todo.beans.Todo;
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class EditTodo extends HttpServlet {
 		Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
 		int todoId = Integer.parseInt(request.getParameter("todoId"));
 
-		Todo todo = ApplicationDoa.getTodo(todoId, connection);
+		Todo todo = ApplicationDao.getTodo(todoId, connection);
 
 		request.getSession().setAttribute("todoId", todoId);
 
@@ -50,7 +50,7 @@ public class EditTodo extends HttpServlet {
 		Todo todo = new Todo(id, title, description, status, targetDate, userName);
 
 		// update it in db
-		int rows = ApplicationDoa.updateTodo(todo, connection);
+		int rows = ApplicationDao.updateTodo(todo, connection);
 
 		if (rows == 0) {
 			System.out.println("Error! can't edit the todo");

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.test.todo.beans.Todo;
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -37,7 +37,7 @@ public class LoginUser extends HttpServlet {
 
 		} else {
 			Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
-			List<Todo> todos = ApplicationDoa.getTodos(userName, connection);
+			List<Todo> todos = ApplicationDao.getTodos(userName, connection);
 
 			request.setAttribute("ListTodos", todos);
 
@@ -52,7 +52,7 @@ public class LoginUser extends HttpServlet {
 		// get users todos from db
 		Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
 		String userName = request.getParameter("userName");
-		List<Todo> todos = ApplicationDoa.getTodos(userName, connection);
+		List<Todo> todos = ApplicationDao.getTodos(userName, connection);
 
 		// put username in the session scope
 		request.getSession().setAttribute("userName", userName);

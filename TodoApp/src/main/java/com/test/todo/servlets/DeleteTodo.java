@@ -3,7 +3,7 @@ package com.test.todo.servlets;
 import java.io.IOException;
 import java.sql.Connection;
 
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ public class DeleteTodo extends HttpServlet {
 		Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
 		int todoId = Integer.parseInt(request.getParameter("todoId"));
 
-		int rowsAffected = ApplicationDoa.deleteTodo(todoId, connection);
+		int rowsAffected = ApplicationDao.deleteTodo(todoId, connection);
 
 		if (rowsAffected == 0) {
 			System.out.println("Error! Can't delete the todo");

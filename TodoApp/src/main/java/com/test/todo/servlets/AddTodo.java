@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import com.test.todo.beans.Todo;
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -35,7 +35,7 @@ public class AddTodo extends HttpServlet {
 		Todo todo = new Todo(title, description, status, targetDate, userName);
 		Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
 
-		int rows = ApplicationDoa.addTodo(userName, todo, connection);
+		int rows = ApplicationDao.addTodo(userName, todo, connection);
 
 		// ----- Tracing purposes---------//
 		if (rows == 0) {

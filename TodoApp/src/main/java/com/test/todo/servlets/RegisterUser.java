@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.test.todo.beans.Todo;
 import com.test.todo.beans.User;
-import com.test.todo.dao.ApplicationDoa;
+import com.test.todo.dao.ApplicationDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -35,7 +35,7 @@ public class RegisterUser extends HttpServlet {
 			request.getRequestDispatcher("/register/register.jsp").include(request, response);
 		} else {
 			Connection connection = (Connection) getServletContext().getAttribute("dbconnection");
-			List<Todo> todos = ApplicationDoa.getTodos(userName, connection);
+			List<Todo> todos = ApplicationDao.getTodos(userName, connection);
 
 			request.setAttribute("ListTodos", todos);
 
@@ -60,7 +60,7 @@ public class RegisterUser extends HttpServlet {
 		request.getSession().setAttribute("userName", userName);
 
 		// add our user to the data base
-		int rows = ApplicationDoa.addUser(user, connection);
+		int rows = ApplicationDao.addUser(user, connection);
 
 		// -------Tracing purposes--------//
 
