@@ -8,8 +8,8 @@ public class DBConnection {
 
 	public static Connection getConnection() {
 		String jdbcURL = "jdbc:mysql://localhost:3306/todos";
-		String jdcbUserName = "root";
-		String jdcPassword = "mysql";
+		String jdcbUserName = "your_DB_name";
+		String jdcPassword = "your_DB_password";
 
 		Connection connection = null;
 
